@@ -1,0 +1,8 @@
+node_modules
+.git
+.github
+README.md
+PROJECT_REPORT.md
+docker-compose.yml
+k8s-deployment.yaml
+npm-debug.log

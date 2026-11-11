@@ -1,0 +1,15 @@
+{
+  "name": "cicd-docker-project",
+  "version": "1.0.0",
+  "description": "Project 4: CI/CD Pipeline with GitHub Actions and Docker (No Cloud Needed)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
+  },
+  "author": "Vaishnavi Warad",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

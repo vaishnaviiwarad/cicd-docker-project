@@ -1,0 +1,9 @@
+services:
+  web-app:
+    # Pulls the image pushed by GitHub Actions (or builds locally if needed)
+    image: vaishnaviiwarad/cicd-demo-app:latest
+    build: .
+    container_name: cicd-demo-app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
