@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Project Report - Vaishnavi Warad</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 15mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1e293b;
+      background: #e2e8f0;
+      font-size: 10pt;
+      line-height: 1.48;
+    }
+
+    .print-toolbar {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+
+    .print-btn {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    .print-btn:hover {
+      background: #0369a1;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      margin: 18px auto;
+      padding: 14mm 16mm;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .print-toolbar {
+        display: none;
+      }
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+    }
+
+    /* Header */
+    .report-header {
+      border-bottom: 2.5px solid #0284c7;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .org-tag {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .report-header h1 {
+      font-size: 17pt;
+      color: #0f172a;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      font-size: 9pt;
+      color: #475569;
+      margin-top: 6px;
+    }
+
+    .meta-grid strong {
+      color: #0f172a;
+    }
+
+    .meta-grid a {
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    /* Sections */
+    h2 {
+      font-size: 11.5pt;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border-left: 4px solid #0284c7;
+      padding-left: 8px;
+      margin: 14px 0 7px 0;
+    }
+
+    p {
+      margin-bottom: 8px;
+      text-align: justify;
+      color: #334155;
+    }
+
+    /* Tools Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 9.2pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* Diagram Box */
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 10px;
+      margin: 12px 0 4px 0;
+      text-align: center;
+    }
+
+    .diagram-caption {
+      font-size: 8.5pt;
+      color: #64748b;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Steps */
+    .step-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3.5px solid #0284c7;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 9px;
+    }
+
+    .step-card h3 {
+      font-size: 10pt;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .step-card p {
+      margin-bottom: 0;
+      font-size: 9.4pt;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 8.8pt;
+    }
+
+    /* Verification Box */
+    .verify-box {
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin: 10px 0 12px 0;
+    }
+
+    .verify-box h3 {
+      font-size: 9.8pt;
+      color: #065f46;
+      margin-bottom: 4px;
+    }
+
+    .verify-box ul {
+      margin-left: 18px;
+      font-size: 9pt;
+      color: #064e3b;
+    }
+
+    .verify-box li {
+      margin-bottom: 2px;
+    }
+
+    .footer-sign {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8.8pt;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-toolbar">
+    <button class="print-btn" onclick="window.print()">Save as 2-Page PDF (Ctrl + P)</button>
+  </div>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <div class="report-header">
+      <div class="org-tag">Elevate Labs &bull; 2-Week DevOps Internship Project Report</div>
+      <h1>Project 4: CI/CD Pipeline with GitHub Actions &amp; Docker (No Cloud Needed)</h1>
+      <div class="meta-grid">
+        <div><strong>Intern Name:</strong> Vaishnavi Warad</div>
+        <div><strong>Domain:</strong> DevOps &amp; Cloud Engineering</div>
+        <div><strong>GitHub Repo:</strong> <a href="https://github.com/vaishnaviiwarad/cicd-docker-project">github.com/vaishnaviiwarad/cicd-docker-project</a></div>
+        <div><strong>Docker Hub:</strong> <a href="https://hub.docker.com/r/vaishnaviiwarad/cicd-demo-app">hub.docker.com/r/vaishnaviiwarad/cicd-demo-app</a></div>
+      </div>
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>
+      In traditional software development, engineers manually execute tests on local machines, copy files across environments, and configure runtime dependencies individually. This manual workflow often causes configuration drift (the classic <em>"it works on my machine"</em> issue), slows down software releases, and introduces human errors during deployment.
+    </p>
+    <p>
+      Containerization solves environment consistency by bundling source code, dependencies, and runtime libraries into portable Docker images. Combining containers with Continuous Integration and Continuous Deployment (CI/CD) removes manual handoffs entirely. This project implements a complete, end-to-end CI/CD pipeline for a Node.js web application using GitHub Actions, Docker, and Docker Hub, running locally via Docker Compose without requiring paid cloud infrastructure.
+    </p>
+
+    <h2>2. Abstract</h2>
+    <p>
+      This project demonstrates an automated software delivery lifecycle built strictly with free and open-source DevOps tooling. Whenever a developer pushes code changes to the <code>main</code> branch of the GitHub repository, an event-driven <strong>GitHub Actions</strong> workflow (<code>.github/workflows/ci-cd.yml</code>) automatically initiates two sequential jobs. First, the <code>test</code> job sets up a Node.js 20 environment, installs dependencies, and runs an automated HTTP verification suite (<code>test.js</code>). Second, upon test success, the <code>build-and-push</code> job securely logs into <strong>Docker Hub</strong> using encrypted repository secrets, builds an optimized Alpine-based Docker container image, and publishes the <code>vaishnaviiwarad/cicd-demo-app:latest</code> image. Finally, the verified container image is pulled and deployed locally via <strong>Docker Compose</strong>, serving a live status dashboard on port <code>3000</code>.
+    </p>
+
+    <h2>3. Tools Used</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 28%;">Tool / Technology</th>
+          <th>Purpose in Project</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Git &amp; GitHub</strong></td>
+          <td>Version control system and remote repository hosting for source code and pipeline definitions.</td>
+        </tr>
+        <tr>
+          <td><strong>GitHub Actions</strong></td>
+          <td>Automated CI/CD engine executing test, build, and registry push jobs on every commit to <code>main</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Node.js (v20) &amp; Express</strong></td>
+          <td>Web runtime and framework powering the application (<code>app.js</code>) and built-in HTTP test suite (<code>test.js</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>Docker &amp; Docker Compose</strong></td>
+          <td>Container runtime and multi-container orchestration file (<code>docker-compose.yml</code>) for local deployment.</td>
+        </tr>
+        <tr>
+          <td><strong>Docker Hub (Free Tier)</strong></td>
+          <td>Public container image registry storing versioned application builds (<code>vaishnaviiwarad/cicd-demo-app</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>Minikube Manifest (Optional)</strong></td>
+          <td>Included declarative Kubernetes YAML (<code>k8s-deployment.yaml</code>) for local cluster deployment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>CI/CD Pipeline Architecture</h2>
+    <div class="diagram-box">
+      <svg width="100%" height="88" viewBox="0 0 680 88" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3 z" fill="#0284c7" />
+          </marker>
+        </defs>
+        <rect x="6" y="18" width="108" height="50" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <text x="60" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">1. Git Push</text>
+        <text x="60" y="56" text-anchor="middle" font-size="9.5" fill="#475569">main branch</text>
+
+        <line x1="114" y1="43" x2="140" y2="43" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow)" />
+
+        <rect x="142" y="18" width="114" height="50" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+        <text x="199" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">2. Run Tests</text>
+        <text x="199" y="56" text-anchor="middle" font-size="9.5" fill="#475569">npm test (Pass)</text>
+
+        <line x1="256" y1="43" x2="282" y2="43" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow)" />
+
+        <rect x="284" y="18" width="120" height="50" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <text x="344" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">3. Docker Build</text>
+        <text x="344" y="56" text-anchor="middle" font-size="9.5" fill="#475569">node:20-alpine</text>
+
+        <line x1="404" y1="43" x2="430" y2="43" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow)" />
+
+        <rect x="432" y="18" width="114" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="489" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">4. Docker Hub</text>
+        <text x="489" y="56" text-anchor="middle" font-size="9.5" fill="#475569">Push :latest</text>
+
+        <line x1="546" y1="43" x2="572" y2="43" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow)" />
+
+        <rect x="574" y="18" width="100" height="50" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <text x="624" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">5. Deploy</text>
+        <text x="624" y="56" text-anchor="middle" font-size="9.5" fill="#475569">localhost:3000</text>
+      </svg>
+      <div class="diagram-caption">Figure 1: Automated CI/CD Pipeline Flow from Commit to Local Container Deployment</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page page-break">
+    <h2>4. Steps Involved in Building the Project</h2>
+
+    <div class="step-card">
+      <h3>Step 1: Application &amp; Automated Test Development</h3>
+      <p>
+        Created a lightweight Express web application (<code>app.js</code>) serving a styled deployment status page at <code>/</code> (showing app name, version, container hostname, and live status) and a JSON health endpoint at <code>/health</code>. Implemented automated tests in <code>test.js</code> using Node's native <code>http</code> and <code>assert</code> modules to confirm both endpoints return HTTP <code>200 OK</code> before container packaging.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <h3>Step 2: Containerization with Dockerfile &amp; Docker Compose</h3>
+      <p>
+        Wrote a <code>Dockerfile</code> using the lightweight <code>node:20-alpine</code> base image, copying <code>package.json</code>, running <code>npm install --omit=dev</code>, exposing port <code>3000</code>, and setting <code>CMD ["node", "app.js"]</code>. Configured <code>docker-compose.yml</code> to reference <code>vaishnaviiwarad/cicd-demo-app:latest</code> with port mapping <code>3000:3000</code> and <code>restart: unless-stopped</code>, alongside <code>k8s-deployment.yaml</code> for optional Minikube deployment.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <h3>Step 3: Securing Registry Credentials with GitHub Secrets</h3>
+      <p>
+        Generated a Docker Hub Personal Access Token (PAT) with <strong>Repo Read &amp; Write</strong> permissions and stored both <code>DOCKERHUB_USERNAME</code> (<code>vaishnaviiwarad</code>) and <code>DOCKERHUB_TOKEN</code> inside GitHub Encrypted Repository Secrets. This ensures authentication credentials are encrypted at rest and masked in CI/CD logs without exposing secrets in code.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <h3>Step 4: Configuring GitHub Actions CI/CD Workflow</h3>
+      <p>
+        Authored <code>.github/workflows/ci-cd.yml</code> triggered on <code>push</code> and <code>pull_request</code> to <code>main</code>. Job 1 (<code>test</code>) runs <code>npm install</code> and <code>npm test</code> on an <code>ubuntu-latest</code> runner. Job 2 (<code>build-and-push</code>) depends on Job 1 (<code>needs: test</code>) and only executes on pushes to <code>main</code>, authenticating via <code>docker/login-action@v3</code>, building the image, and pushing <code>vaishnaviiwarad/cicd-demo-app:latest</code> to Docker Hub.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <h3>Step 5: Local Container Deployment &amp; End-to-End Verification</h3>
+      <p>
+        Pushed the repository to GitHub (<code>git push -u origin main</code>) and verified both CI/CD workflow jobs completed with green checkmarks. Confirmed the published image on Docker Hub, then pulled and started the container locally on Docker Desktop using <code>docker compose pull</code> and <code>docker compose up -d</code>.
+      </p>
+    </div>
+
+    <div class="verify-box">
+      <h3>Observed Verification &amp; Deployment Results</h3>
+      <ul>
+        <li><strong>Local Unit Tests:</strong> <code>npm test</code> passed both <code>GET /</code> (200 OK) and <code>GET /health</code> (<code>{"status":"UP"}</code>).</li>
+        <li><strong>GitHub Actions Pipeline:</strong> Automated <em>Run Tests</em> and <em>Build &amp; Push Docker Image</em> jobs succeeded on push to <code>main</code>.</li>
+        <li><strong>Docker Hub Image Published:</strong> <code>vaishnaviiwarad/cicd-demo-app:latest</code> confirmed live in Docker Hub registry.</li>
+        <li><strong>Local Container Running:</strong> Accessed <code>http://localhost:3000</code> showing container ID <code>64cfceb25b2f</code> in <em>Healthy &amp; Running</em> state.</li>
+      </ul>
+    </div>
+
+    <h2>5. Conclusion</h2>
+    <p>
+      This project successfully demonstrates how to design, automate, and verify a complete CI/CD pipeline using GitHub Actions, Docker, and Docker Hub without requiring any paid cloud servers. By enforcing automated unit tests before image creation, securing registry tokens via encrypted secrets, and enabling single-command local deployment with Docker Compose, the workflow eliminates manual errors, prevents environment inconsistencies, and delivers fast, repeatable deployments on every code commit.
+    </p>
+
+    <div class="footer-sign">
+      <span>Submitted by: <strong>Vaishnavi Warad</strong></span>
+      <span>Elevate Labs Internship &bull; DevOps Project 4</span>
+    </div>
+  </div>
+
+</body>
+</html>

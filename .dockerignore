@@ -3,6 +3,7 @@ node_modules
 .github
 README.md
 PROJECT_REPORT.md
+PROJECT_REPORT.html
 docker-compose.yml
 k8s-deployment.yaml
 npm-debug.log
